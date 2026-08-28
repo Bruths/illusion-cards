@@ -244,7 +244,7 @@ if (!authenticated) {
     <main
       style={{
         minHeight: "100vh",
-        background: "#ffffff",
+        background: "#000000",
         color: "white",
         padding: "16px",
         overflowX: "hidden",
