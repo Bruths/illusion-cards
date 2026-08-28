@@ -241,15 +241,15 @@ if (!authenticated) {
   );
 }
   return (
-    <main
-      style={{
-        minHeight: "100vh",
-        background: "#000000",
-        color: "white",
-        padding: "16px",
-        overflowX: "hidden",
-      }}
-    >
+   <main
+  style={{
+    minHeight: "100vh",
+    backgroundColor: "#050505",
+    color: "#ffffff",
+    padding: "16px",
+    overflowX: "hidden",
+  }}
+>
       <h1
         style={{
           fontSize: "32px",
