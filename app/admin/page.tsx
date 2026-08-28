@@ -73,7 +73,7 @@ useEffect(() => {
 }, []);
 const [authenticated, setAuthenticated] = useState(false);
 
-const ADMIN_PASSWORD = "Kart2026";
+const ADMIN_PASSWORD = "FENERbahce1907.!";
 
 useEffect(() => {
   const saved = localStorage.getItem("admin-auth");
@@ -244,7 +244,7 @@ if (!authenticated) {
     <main
       style={{
         minHeight: "100vh",
-        background: "#050505",
+        background: "#ffffff",
         color: "white",
         padding: "16px",
         overflowX: "hidden",
