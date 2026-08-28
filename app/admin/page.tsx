@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import { supabase } from "../../lib/supabase";
 
+
 const suits = [
   { name: "♠ MAÇA", prefix: "S", color: "white" },
   { name: "♥ KUPA", prefix: "H", color: "#ff3333" },
@@ -62,6 +63,7 @@ export default function AdminPage() {
   const [history, setHistory] = useState<string[]>([]);
 const [remainingCards, setRemainingCards] = useState(52);
 
+
   const allCards = suits.flatMap((suit) =>
     
     ranks.map((rank) => rank + suit.prefix)
@@ -69,6 +71,33 @@ const [remainingCards, setRemainingCards] = useState(52);
 useEffect(() => {
   loadHistory();
 }, []);
+const [authenticated, setAuthenticated] = useState(false);
+
+const ADMIN_PASSWORD = "Kart2026";
+
+useEffect(() => {
+  const saved = localStorage.getItem("admin-auth");
+
+  if (saved === "ok") {
+    setAuthenticated(true);
+  }
+}, []);
+
+function login() {
+  const password = prompt("Admin Şifresi");
+
+  if (password === ADMIN_PASSWORD) {
+    localStorage.setItem("admin-auth", "ok");
+    setAuthenticated(true);
+  } else {
+    alert("Hatalı şifre");
+  }
+}
+
+function logout() {
+  localStorage.removeItem("admin-auth");
+  setAuthenticated(false);
+}
 
 async function loadHistory() {
   const { data } = await supabase
@@ -89,7 +118,7 @@ async function loadHistory() {
     });
 
   setRemainingCards(52 - (count || 0));
-}chooseCard
+}
   async function chooseCard(card: string) {
   const { error } = await supabase
     .from("current_card")
@@ -182,7 +211,32 @@ async function resetDeck() {
 
   alert("Deste sıfırlandı");
 }
-
+if (!authenticated) {
+  return (
+    <main
+      style={{
+        minHeight: "100vh",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        background: "#050505",
+      }}
+    >
+      <button
+        onClick={login}
+        style={{
+          padding: "20px 40px",
+          fontSize: "24px",
+          borderRadius: "12px",
+          border: "none",
+          cursor: "pointer",
+        }}
+      >
+        🔒 Admin Girişi
+      </button>
+    </main>
+  );
+}
   return (
     <main
       style={{
@@ -202,6 +256,18 @@ async function resetDeck() {
       >
         Kart Kontrol Paneli
       </h1>
+      <button
+  onClick={logout}
+  style={{
+    padding: "10px 20px",
+    borderRadius: "10px",
+    border: "none",
+    cursor: "pointer",
+    marginBottom: "20px",
+  }}
+>
+  Çıkış Yap
+</button>
 
       <div
         style={{
