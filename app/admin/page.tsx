@@ -222,18 +222,21 @@ if (!authenticated) {
         background: "#050505",
       }}
     >
-      <button
-        onClick={login}
-        style={{
-          padding: "20px 40px",
-          fontSize: "24px",
-          borderRadius: "12px",
-          border: "none",
-          cursor: "pointer",
-        }}
-      >
-        🔒 Admin Girişi
-      </button>
+     <button
+  onClick={login}
+  style={{
+    padding: "20px 40px",
+    fontSize: "24px",
+    borderRadius: "12px",
+    border: "1px solid #444",
+    cursor: "pointer",
+    background: "#111",
+    color: "white",
+    fontWeight: "bold",
+  }}
+>
+  🔒 Admin Girişi
+</button>
     </main>
   );
 }
